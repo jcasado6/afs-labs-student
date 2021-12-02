@@ -1,11 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: app-deployment
+  namespace: jcasado
   labels:
     app: nginx
 spec:
-  replicas: 3
+  replicas: 1
+  strategy:
+    type: Recreate
+  minReadySeconds: 20
   selector:
     matchLabels:
       app: nginx
@@ -15,7 +19,10 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
+      envFrom:
+        - secretRef:
+            name: db-secret
+      - name: app-deployment
+        image: harbor.dev.afsmtddso.com/jcasado-harborproject/lab-env-repo/1.0@sha256:317235bf23b89f25d30cddf5571cdbfd877c6600c7b11b9d26316765cd3aa091
         ports:
-        - containerPort: 80
+        - containerPort: 5000
