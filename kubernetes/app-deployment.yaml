@@ -4,7 +4,7 @@ metadata:
   name: app-deployment
   namespace: jcasado
   labels:
-    app: nginx
+    app: app
 spec:
   replicas: 1
   strategy:
@@ -12,17 +12,17 @@ spec:
   minReadySeconds: 20
   selector:
     matchLabels:
-      app: nginx
+      app: app
   template:
     metadata:
       labels:
-        app: nginx
+        app: app
     spec:
       containers:
-      envFrom:
-      - secretRef:
-          name: db-secret
-      - name: app-deployment
-        image: harbor.dev.afsmtddso.com/jcasado-harborproject/lab-env-repo/1.0@sha256:317235bf23b89f25d30cddf5571cdbfd877c6600c7b11b9d26316765cd3aa091
+      - envFrom:
+        - secretRef:
+            name: db-secret
+        name: app-deployment
+        image: harbor.dev.afsmtddso.com/jcasado-harborproject/app:747f17d-2845b06
         ports:
         - containerPort: 5000
