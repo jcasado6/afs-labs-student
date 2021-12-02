@@ -20,8 +20,8 @@ spec:
     spec:
       containers:
       envFrom:
-        - secretRef:
-            name: db-secret
+      - secretRef:
+          name: db-secret
       - name: app-deployment
         image: harbor.dev.afsmtddso.com/jcasado-harborproject/lab-env-repo/1.0@sha256:317235bf23b89f25d30cddf5571cdbfd877c6600c7b11b9d26316765cd3aa091
         ports:
