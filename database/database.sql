@@ -1,6 +1,6 @@
 --
 -- PostgreSQL database dump
---
+-- new comment
 
 
 -- NEW COMMENT - testing db pipeline pt 5
